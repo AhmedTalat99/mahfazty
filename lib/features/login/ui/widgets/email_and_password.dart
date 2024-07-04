@@ -42,9 +42,9 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             style: FontHelper.font28SemiBoldWhite,
           ),
           VerticalSpace(10),
-         /*  MyTextFormField(
+           MyTextFormField(
             hintText: 'Enter your email',
-            obscureText: false,
+            isObsecure: false,
             controller: emailController,
             validator: (value) {
               if (!value!.contains('@') || value.isEmpty) {
@@ -67,7 +67,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               return null;
             },
             hintText: 'Enter your password',
-            obscureText: isObsecure,
+            isObsecure: isObsecure,
             suffixIcon: IconButton(
               onPressed: () {
                 setState(() {
@@ -81,7 +81,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
                     ),
             ),
             controller: passwordController,
-          ), */
+          ), 
         ],
       ),
     );

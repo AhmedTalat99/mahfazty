@@ -43,66 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               VerticalSpace(150),
-              //  EmailAndPassword(),
-              Form(
-                key: context.read<LoginCubit>().formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome Back!',
-                      style: FontHelper.font28SemiBoldWhite,
-                    ),
-                    VerticalSpace(30),
-                    Text(
-                      'Email',
-                      style: FontHelper.font28SemiBoldWhite,
-                    ),
-                    VerticalSpace(10),
-                    MyTextFormField(
-                      hintText: 'Enter your email',
-                      controller: emailController,
-                      validator: (value) {
-                        if (!value!.contains('@') || value.isEmpty) {
-                          return 'Invalid Email';
-                        }
-                        return null;
-                      },
-                      isObsecure: false,
-                    ),
-                    VerticalSpace(20),
-                    Text(
-                      'Password',
-                      style: FontHelper.font18BoldWhite,
-                    ),
-                    VerticalSpace(10),
-                    MyTextFormField(
-                      validator: (value) {
-                        if (value!.length < 8 || value.isEmpty) {
-                          return 'Invalid Password';
-                        }
-                        return null;
-                      },
-                      hintText: 'Enter your password',
-                      isObsecure: isObsecure,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isObsecure = !isObsecure;
-                          });
-                        },
-                        icon: isObsecure
-                            ? Icon(Icons.visibility)
-                            : Icon(
-                                Icons.visibility_off,
-                              ),
-                      ),
-                      controller: passwordController,
-                    ),
-                  ],
-                ),
-              ),
-
+                EmailAndPassword(),
               VerticalSpace(20),
               Align(
                 alignment: Alignment.centerRight,

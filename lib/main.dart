@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mahfazty/core/networking/firebase_helper.dart';
 import 'package:mahfazty/core/routing/routing.dart';
+import 'package:mahfazty/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:mahfazty/my_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'features/login/logic/cubit/login_cubit.dart';
@@ -14,5 +15,8 @@ void main() async {
     BlocProvider(
       create: (context) => LoginCubit(FirebaseHelper()),
     ),
+    BlocProvider(
+      create: (context) => SignupCubit(FirebaseHelper()),
+    )
   ], child: MyApp(routing: Routing())));
 }
