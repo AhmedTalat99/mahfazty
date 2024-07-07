@@ -3,53 +3,39 @@ import 'package:mahfazty/core/helpers/spacing.dart';
 import 'package:mahfazty/core/theming/fonts.dart';
 import 'package:mahfazty/features/home/widgets/balance.dart';
 import 'package:mahfazty/features/home/widgets/top_expenses.dart';
+import 'package:mahfazty/features/transactions/transactions_screen.dart';
 
 import '../../core/theming/my_colors.dart';
+import 'widgets/home_body.dart';
 import 'widgets/latest_expenses.dart';
 import 'widgets/my_appbar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 1;
+  List<Widget> screens = [HomeBody(), TransactionsScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0, .5],
-            colors: [
-              MyColors.redColor,
-              MyColors.navyColor,
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  VerticalSpace(10),
-                  MyAppBar(),
-                  Balance(),
-                  VerticalSpace(10),
-                  Text('Top Expenses', style: FontHelper.font18BoldWhite),
-                  VerticalSpace(20),
-                  TopExpenses(),
-                  VerticalSpace(20),
-                  Text('Latest Expenses', style: FontHelper.font18BoldWhite),
-                  VerticalSpace(20),
-                  LatestExpenses(),
-                ],
-              ),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0, .5],
+              colors: [
+                MyColors.redColor,
+                MyColors.navyColor,
+              ],
             ),
           ),
-        ),
-      ),
+          child: screens[currentIndex]),
       floatingActionButton: Container(
         margin: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         decoration: BoxDecoration(
@@ -68,6 +54,12 @@ class HomeScreen extends StatelessWidget {
             showSelectedLabels: false,
             showUnselectedLabels: false, // hidding label
             elevation: 0,
+            currentIndex: currentIndex,
+            onTap: (value) {
+              setState(() {
+                currentIndex = value;
+              });
+            },
             items: [
               BottomNavigationBarItem(
                   icon: Icon(
